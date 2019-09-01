@@ -1,0 +1,32 @@
+module top_module(
+    input clk,
+    input areset,    // Asynchronous reset to OFF
+    input j,
+    input k,
+    output out); //  
+
+    parameter OFF=0, ON=1; 
+    reg state, next_state;
+
+    always @(posedge clk, posedge areset) begin
+        if(areset)  state<= OFF;// State transition logic  
+        else state<= next_state;
+    end
+
+    always @(*) begin
+		case (state)
+			OFF: next_state<= j ? ON : OFF;
+			ON: next_state<= k ? OFF :ON;
+        endcase 
+    end  
+ 
+    always @ (posedge clk, posedge areset)// 进行输出赋值
+       begin
+           case(state)
+			OFF:out<=0;
+            ON: out<=1;
+        default out<=0;
+       endcase
+    end 
+
+endmodule
