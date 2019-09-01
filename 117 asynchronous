@@ -6,6 +6,18 @@ module top_module(
 
     parameter A=0, B=1; 
     reg state, next_state;
+    
+    
+   
+    always @(posedge clk, posedge areset) begin    // This is a sequential always block
+        if(areset)  // State flip-flops with asynchronous reset
+            state<=B;
+        else
+            state<=next_state;
+    end
+
+    // Output logic
+    // assign out = (state == ...);
 
     always @(*) begin    // This is a combinational always block
     // State transition logic
@@ -34,15 +46,6 @@ module top_module(
     end
     
 
-    always @(posedge clk, posedge areset) begin    // This is a sequential always block
-        if(areset)  // State flip-flops with asynchronous reset
-            state<=B;
-        else
-            state<=next_state;
-    end
-
-    // Output logic
-    // assign out = (state == ...);
 
 endmodule
 
