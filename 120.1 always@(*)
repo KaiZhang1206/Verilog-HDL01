@@ -1,0 +1,2 @@
+一般always@(*)是指里面的语句是组合逻辑的。*代替了敏感变量。
+而一般时序逻辑要写成always@(posedge clk or negedge rst)//时钟信号clk上升沿或者复位信号rst下降沿的时候执行always块内的代码。
