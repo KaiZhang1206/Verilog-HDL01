@@ -20,7 +20,7 @@ module top_module(
         endcase 
     end  
  
-    always @ (posedge clk, posedge areset)// 进行输出赋值
+    always @ (posedge clk, posedge reset)// 进行输出赋值
        begin
            case(state)
 			OFF:out<=0;
