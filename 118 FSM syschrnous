@@ -6,7 +6,7 @@ module top_module(clk, reset, in, out);
     reg out;
     
  always @(posedge clk) begin        //1 进行状态转移
-		if (reset) state <= B;		// Reset to state B
+	if (reset) state <= B;		// Reset to state B
         else state <= next;			// Otherwise, cause the state to transition
 	end 
     
@@ -20,7 +20,7 @@ module top_module(clk, reset, in, out);
  always @ (* )// 进行输出赋值
        begin
 		case(state)
-			A:
+	    A:
                 out=0;
             B:
                 out=1;
