@@ -3,35 +3,35 @@ module top_module(
     input in,
     input areset,
     output out); //
-    
-    reg state,next_state;
-    parameter A=0,B=1,C=2,D=3;
 
-    always @(posedge clk,posedge areset) begin // State transition logic
-        if(areset)
+    reg state,next_state;
+    parameter A=4'b000,B=4'b0010,C=4'b0100,D=4'b1000;
+
+    always @(posedge clk,negedge areset) begin // State transition logic
+        if(!areset)
             state <= A;
         else
             state <= next_state;
       end
 
-    always @(posedge clk,posedge areset)begin// State flip-flops with asynchronous reset
+    always @(*)begin// State flip-flops with asynchronous reset
         case (state)
             A: if(in==0)
-                  next_state<=A;
+                  next_state=A;
                 else
-                  next_state<=B;
+                  next_state=B;
             B: if(in==0)
-                  next_state<=C;
+                  next_state=C;
                 else
-                  next_state<=B; 
+                  next_state=B; 
             C: if(in==0)
-                  next_state<=A;
+                  next_state=A;
                 else
-                  next_state<=D;
+                  next_state=D;
             D: if(in==0)
-                  next_state<=C;
+                  next_state=C;
                 else
-                  next_state<=B;
+                  next_state=B;
            endcase
 		end
        
@@ -39,7 +39,7 @@ module top_module(
      case(state)
 			A:out=0;
             B:out=0;
-            C:out=0;
+            C:out=1;
             D:out=1;            
         endcase
     end
